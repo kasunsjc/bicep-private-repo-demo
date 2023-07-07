@@ -1,0 +1,12 @@
+
+# Create a resource group.
+az group create -n 'my-private-registory' -l 'westeurope'
+
+# Create a private registry in the resource group.
+az acr create --name "bicepregistory3432" --sku Basic -g 'my-private-registory'
+
+# Publish the storage module to the private registry.
+az bicep publish -f private-registry/storage.bicep --target br:bicepregistory3432.azurecr.io/bicep/modules/storage:1.0.0
+
+# Deploy the storage module from the private registry.
+az group deployment create -g storage-rg -n storage-deploy -f private-registry/main.bicep
