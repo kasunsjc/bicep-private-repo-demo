@@ -1,5 +1,3 @@
-//
-
 module storageDeploy 'br/SampleBicepModules:storage:1.0.0' = {
   name: 'sample-storage-deployment'
   params:{
